@@ -20,7 +20,7 @@ contract MarketPlace is MyNFT,Xtoken {
 	}
 
 	function getBalance(address addressForBalance) public view returns(uint){
-        return balanceOf( addressForBalance );
+        return balanceOfToken( addressForBalance );
     }
 
 	function mintAndAddItemForSale(string memory tokenURI, string memory _description, uint _price) public returns(uint) {
@@ -65,7 +65,7 @@ contract MarketPlace is MyNFT,Xtoken {
 	    require(i.price <= balanceOf( msg.sender ), "not enough tokens");
 	    i.buyer = msg.sender;
 	    i.sold = true;
-	    transferFrom (msg.sender, i.seller, i.price);
+	    transferTokensFrom (msg.sender, i.seller, i.price);
         safeTransferFrom(address(this), msg.sender, _index);
 
 	}
